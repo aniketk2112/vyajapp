@@ -1,15 +1,16 @@
 // Login.js
 
 import React, { useState } from 'react';
-import './login.css'; // Import your stylesheet
+import './login.css';
 
-const Login = () => {
+const Login = ({ onLogin }) => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
 
     const handleLogin = () => {
-        // Handle login logic here
-        console.log('Logging in with:', username, password);
+        // Perform login logic here
+        // Assuming a successful login for simplicity
+        onLogin();
     };
 
     return (
@@ -30,7 +31,9 @@ const Login = () => {
                     onChange={(e) => setPassword(e.target.value)}
                     placeholder="Enter your password"
                 />
-                <button type="button" onClick={handleLogin}>Login</button>
+                <button type="button" onClick={handleLogin}>
+                    Login
+                </button>
             </form>
         </div>
     );
