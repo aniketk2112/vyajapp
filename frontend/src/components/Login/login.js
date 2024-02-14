@@ -1,16 +1,29 @@
 // Login.js
 
 import React, { useState } from 'react';
+import axios from 'axios';
 import './login.css';
 
 const Login = ({ onLogin }) => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
 
-    const handleLogin = () => {
-        // Perform login logic here
-        // Assuming a successful login for simplicity
-        onLogin();
+    const handleLogin = async () => {
+        try {
+            const response = await axios.post('http://localhost:3001/login', {
+                username,
+                password,
+            });
+
+            // Assuming the API responds with a success message
+            console.log(response.data.message);
+
+            // Call the onLogin prop to notify the parent component about successful login
+            onLogin();
+        } catch (error) {
+            console.error('Login failed:', error.response.data.message);
+        }
+
     };
 
     return (
